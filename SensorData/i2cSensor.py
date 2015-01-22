@@ -16,5 +16,8 @@ class i2cSensor(Sensor):
         Constructor
         '''
         
-        Sensor.__init__(self)
+        Sensor.__init__(self, name, sensorType, address)
+        self.__address = address
         
+    def getAddress(self):
+        return self.__address

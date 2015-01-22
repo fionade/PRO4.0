@@ -7,7 +7,7 @@ from i2cSensor import i2cSensor
 
 class i2cTemperatureSensor(i2cSensor):
     '''
-    classdocs
+    i2c temperature sensor
     '''
 
 

@@ -68,11 +68,12 @@ time.sleep(0.5)
 
 
 while True:
+    time.sleep(3)
     firmata.i2c_write(addr, REG_CHAN0_WORD)
     firmata.i2c_read(addr, REG_CHAN0_WORD, 2, firmata.I2C_READ)
 
     #sleep to wait for the sensor to send back data
-    time.sleep(1)
+    time.sleep(3)
     ch0_data = firmata.i2c_get_read_data(addr)
 
     #data comes back as list of 3 ints, first is useless, second is least significant byte and third MSB
@@ -83,7 +84,7 @@ while True:
     firmata.i2c_read(addr, REG_CHAN1_WORD, 2, firmata.I2C_READ)
 
     #sleep to wait for the sensor to send back data
-    time.sleep(0.3)
+    time.sleep(0.1)
     ch1_data = firmata.i2c_get_read_data(addr)
 
     #data comes back as list of 3 ints, first is useless, second is least significant byte and third MSB
