@@ -11,12 +11,13 @@ import math
 from time import sleep
 import os.path
 
-PORT = '/dev/tty.usbmodemfd131'
-PINS = (0, 1, 2, 3)
+PORT = '/dev/cu.usbmodemfd141'
+#PINS = (0, 1, 2, 3)
 
 
 def writeDataToFile(csvfile, csvwriter, temperature='NA', light='NA', sound='NA'):
-    csvwriter.writerow([time.time(),temperature, sound])
+    print()
+    csvwriter.writerow([time.time(), temperature, sound])
     csvfile.flush()
 
 if __name__ == '__main__':
@@ -33,14 +34,17 @@ if __name__ == '__main__':
     if not fileExists:
         csvwriter.writerow(['time', 'temperature', 'light', 'sound'])
     
-    board = pyfirmata.Arduino(PORT)
+    board = pyfirmata.ArduinoMega(PORT)
     print "Setting up the connection to the board ..."
+    print(board)
     it = pyfirmata.util.Iterator(board)
     it.start()
     
     # Start reporting for defined pins
     # temperature at a0
     board.analog[0].enable_reporting()
+    #sda = board.get_pin("d:20:p")
+    #sda.enable_reporting()
     # temperature definitions
     B = 3975;
     
@@ -53,6 +57,8 @@ if __name__ == '__main__':
     # Loop for reading the input.
     try:
         while True:
+
+            #print(sda.read())
             # TEMPERATURE
             a = board.analog[0].read()
             if (a != 0.0):

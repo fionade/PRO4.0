@@ -4,6 +4,7 @@
 #To-Do: Add conversion from raw values to lux
 
 import time
+import sys
 
 from PyMata.pymata import PyMata
 
@@ -11,6 +12,14 @@ from PyMata.pymata import PyMata
 ADDR_LOW                  = 0x29
 ADDR_NORMAL               = 0x39
 ADDR_HIGH                 = 0x49
+#    I2C Address
+#    ===========
+#    The address will be different depending on whether you leave
+#    the ADDR pin floating (addr 0x39), or tie it to ground or vcc. 
+#    The default addess is 0x39, which assumes the ADDR pin is floating
+#    (not connected to anything).  If you set the ADDR pin high
+#    or low, use TSL2561_ADDR_HIGH (0x49) or TSL2561_ADDR_LOW
+#    (0x29) respectively.
 
 READBIT                   = 0x01
 COMMAND_BIT               = 0x80    # Must be 1
@@ -45,8 +54,9 @@ INTEGRATIONTIME_402MS     = 0x02    # 402ms
 GAIN_0X                   = 0x00    # No gain
 GAIN_16X                  = 0x10    # 16x gain
 
+print(sys.version)
 
-firmata = PyMata("COM4")
+firmata = PyMata("/dev/tty.usbmodemfa141")
 
 addr = ADDR_NORMAL
 firmata.i2c_config(0, firmata.DIGITAL, 21, 20)
@@ -56,12 +66,13 @@ firmata.i2c_write(addr, COMMAND_BIT | WORD_BIT | REGISTER_CONTROL)
 firmata.i2c_write(addr, CONTROL_POWERON)
 time.sleep(0.5)
 
+
 while True:
     firmata.i2c_write(addr, REG_CHAN0_WORD)
     firmata.i2c_read(addr, REG_CHAN0_WORD, 2, firmata.I2C_READ)
 
     #sleep to wait for the sensor to send back data
-    time.sleep(0.1)
+    time.sleep(1)
     ch0_data = firmata.i2c_get_read_data(addr)
 
     #data comes back as list of 3 ints, first is useless, second is least significant byte and third MSB
@@ -72,7 +83,7 @@ while True:
     firmata.i2c_read(addr, REG_CHAN1_WORD, 2, firmata.I2C_READ)
 
     #sleep to wait for the sensor to send back data
-    time.sleep(0.1)
+    time.sleep(0.3)
     ch1_data = firmata.i2c_get_read_data(addr)
 
     #data comes back as list of 3 ints, first is useless, second is least significant byte and third MSB
