@@ -24,4 +24,4 @@ class Sensor(object):
     
         
     def getCurrentData(self):
-        pass
+        raise NotImplementedError("Method not implemented.")

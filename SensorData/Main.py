@@ -52,7 +52,6 @@ class Main(object):
             # how to get a device's address?
             print ("Setting up " + str(s))
             addr = s.getAddress()
-            print(addr)
             self.__firmata.i2c_write(addr, COMMAND_BIT | WORD_BIT | REGISTER_CONTROL)
             self.__firmata.i2c_write(addr, CONTROL_POWERON)
         time.sleep(0.5)
@@ -65,10 +64,9 @@ class Main(object):
     def loop(self):
         # iterate through all sensors, get their data (they should all implement a getData function, depending on their type
         # and write to file
-        print('listening')
+        # print('listening')
         for s in sensors:
             addr = s.getAddress()
-            print(addr)
             self.__firmata.i2c_write(addr, REG_CHAN1_WORD)
             time.sleep(1)
             self.__firmata.i2c_read(addr, REG_CHAN1_WORD, 2, self.__firmata.I2C_READ)
