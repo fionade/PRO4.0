@@ -1,13 +1,13 @@
 '''
-Created on 22.01.2015
+Created on 23.01.2015
 
 @author: fiona
 '''
 from i2cSensor import i2cSensor
 
-class i2cTemperatureSensor(i2cSensor):
+class i2cRGBSensor(i2cSensor):
     '''
-    i2c temperature sensor
+    classdocs
     '''
 
 
@@ -15,14 +15,10 @@ class i2cTemperatureSensor(i2cSensor):
         '''
         Constructor
         '''
-        
-        # call parent constructor
-        i2cSensor.__init__(self, "name", "sensorType")
-    
+        i2cSensor.__init__(self, name, sensorType)
     
     def getCurrentData(self):
         pass
     
     def initCommunication(self):
         pass
-        

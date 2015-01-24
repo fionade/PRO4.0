@@ -10,7 +10,7 @@ class Sensor(object):
     '''
 
 
-    def __init__(self, name, sensorType, address):
+    def __init__(self, name, sensorType):
         '''
         Constructor
         '''
