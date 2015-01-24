@@ -21,6 +21,6 @@ class i2cSensor(Sensor):
     def read(self):
         raise NotImplementedError("Not implemented")
     
-    def initCommunication(self):
+    def initCommunication(self, firmata):
         raise NotImplementedError("Not implemented")
     

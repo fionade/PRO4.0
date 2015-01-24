@@ -8,6 +8,7 @@ from PyMata.pymata import PyMata
 from i2cLightSensor import i2cLightSensor
 import time
 from i2cRGBSensor import i2cRGBSensor
+from HIH6130 import HIH6130
 
 class Main(object):
     
@@ -39,8 +40,8 @@ class Main(object):
         time.sleep(0.5)
 
     
-    def writeToDatabse(self, data):
-        pass
+    def writeToDatabase(self, data):
+        raise NotImplementedError("Not implemented")
  
     
     def loop(self):
@@ -67,7 +68,8 @@ if __name__ == '__main__':
     # list all attached sensors
     sensors = []
     #sensors.append(i2cTemperatureSensor("id", "type"))
-    sensors.append(i2cLightSensor(1, "light"))
+    #sensors.append(i2cLightSensor(1, "light"))
+    sensors.append(HIH6130(1, "humidity_temperature"))
     #sensors.append(i2cRGBSensor(2, "rgb"))
     
     run = Main(arduinoAddress, dbAddress, sensors)
