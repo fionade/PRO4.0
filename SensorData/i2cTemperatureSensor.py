@@ -21,8 +21,8 @@ class i2cTemperatureSensor(i2cSensor):
     
     
     def getCurrentData(self):
-        pass
+        raise NotImplementedError("Not implemented")
     
     def initCommunication(self):
-        pass
+        raise NotImplementedError("Not implemented")
         

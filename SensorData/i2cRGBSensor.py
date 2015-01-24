@@ -18,7 +18,7 @@ class i2cRGBSensor(i2cSensor):
         i2cSensor.__init__(self, name, sensorType)
     
     def getCurrentData(self):
-        pass
+        raise NotImplementedError("Not implemented")
     
     def initCommunication(self):
-        pass
+        raise NotImplementedError("Not implemented")
