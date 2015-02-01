@@ -19,11 +19,11 @@ class Main(object):
         # board setup
         self.__firmata = PyMata(arduinoAddress)
         # initialise for i2c calls
-        self.__firmata.i2c_config(0, self.__firmata.DIGITAL, 21, 20)
+#         self.__firmata.i2c_config(0, self.__firmata.DIGITAL, 21, 20)
         
         # sensors
         # TODO: differentiate between different types of sensors
-        self.__sensors = self.initSensors(sensors)
+#         self.__sensors = self.initSensors(sensors)
         
     
     def initDatabase(self, dbAddress):
@@ -37,7 +37,7 @@ class Main(object):
             # how to get a device's address?
             print ("Setting up " + str(s))
             s.initCommunication(self.__firmata)
-        time.sleep(0.5)
+            time.sleep(0.5)
 
     
     def writeToDatabase(self, data):
@@ -62,15 +62,16 @@ start loop to collect sensor data and write to database/file
 if __name__ == '__main__':
     
     # config
-    arduinoAddress = "/dev/tty.usbmodemfa141"
+    arduinoAddress = "/dev/tty.usbmodem1421"
     dbAddress = ""
     
     # list all attached sensors
     sensors = []
     #sensors.append(i2cTemperatureSensor("id", "type"))
     #sensors.append(i2cLightSensor(1, "light"))
-    sensors.append(HIH6130(1, "humidity_temperature"))
-    #sensors.append(i2cRGBSensor(2, "rgb"))
+#     sensors.append(HIH6130(1, "humidity_temperature"))
+    sensors.append(i2cRGBSensor(2, "rgb"))
+
     
     run = Main(arduinoAddress, dbAddress, sensors)
     
