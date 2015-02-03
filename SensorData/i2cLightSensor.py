@@ -27,6 +27,7 @@ class i2cLightSensor(i2cSensor):
     REGISTER_TIMING           = 0x01
     
     INTEGRATIONTIME_402MS     = 0x02
+    INTEGRATIONTIME_101MS     = 0x01    # 101ms
     GAIN_16X                  = 0x10
     
     REG_CHAN0_WORD = 0xAC
@@ -62,10 +63,11 @@ class i2cLightSensor(i2cSensor):
     
     ADDR = 0x39
 
-    def __init__(self, name, sensorType, firmata):
+    def __init__(self, name, sensorType, firmata, thread_lock):
         '''
         Constructor
         '''
+        self.__thread_lock = thread_lock
         i2cSensor.__init__(self, name, sensorType, firmata)
     
     def initCommunication(self):
@@ -77,12 +79,12 @@ class i2cLightSensor(i2cSensor):
         self.firmata().i2c_write(self.ADDR, self.COMMAND_BIT | self.REGISTER_TIMING, self.INTEGRATIONTIME_402MS | self.GAIN_16X)
         
         self._Sensor__running = True
-        #self._Sensor__thread = thread.start_new_thread(self.poll, (firmata,))
+        self._Sensor__thread = thread.start_new_thread(self.poll, (self.__thread_lock,))
         
     def rawToLUX(self, ch0, ch1):
         chScale = (1 << self.LUX_CHSCALE);
-        ch0_data = 256 * ch0[2] + ch0[1]
-        ch1_data = 256 * ch1[2] + ch1[1]
+        ch0_data = 256 * ch0[1] + ch0[0]
+        ch1_data = 256 * ch1[1] + ch1[0]
         
         # scale the channel values
         channel0 = (ch0_data * chScale) >> self.LUX_CHSCALE
@@ -120,6 +122,8 @@ class i2cLightSensor(i2cSensor):
         elif ratio <= self.LUX_K8T:
             b = self.LUX_B8T
             m = self.LUX_M8T
+        else:
+            return -1
             
         temp = ((channel0 * b) - (channel1 * m))
         # do not allow negative lux value
@@ -135,24 +139,25 @@ class i2cLightSensor(i2cSensor):
         return lux
 
     
-    def read(self):
-        #while self._Sensor__running:
-        self.firmata().i2c_write(self.ADDR, self.REG_CHAN0_WORD)
-        self.firmata().i2c_read(self.ADDR, self.REG_CHAN0_WORD, 2, self.firmata().I2C_READ)
-        time.sleep(0.5)       
-        ch0_data = self.firmata().i2c_get_read_data(self.ADDR)
-        
-        self.firmata().i2c_write(self.ADDR, self.REG_CHAN1_WORD)
-        self.firmata().i2c_read(self.ADDR, self.REG_CHAN1_WORD, 2, self.firmata().I2C_READ)
-        time.sleep(0.5)
-        ch1_data = self.firmata().i2c_get_read_data(self.ADDR)
-        
-        
-        if (ch0_data is not None):
-            #ch0_raw = 256 * ch0_data[2] + ch0_data[1]
-            self._Sensor__value = self.rawToLUX(ch0_data, ch1_data)
-            return self.rawToLUX(ch0_data, ch1_data)
-        
-        else:
-            self._Sensor__value = -1
-        return -1
+    def poll(self, thread_lock):
+        while self._Sensor__running:
+            ch0_data = None
+            ch1_data = None
+            thread_lock.acquire()
+            self.firmata().i2c_write(self.ADDR, self.REG_CHAN0_WORD)
+            self.firmata().i2c_read(self.ADDR, self.REG_CHAN0_WORD, 4, self.firmata().I2C_READ)
+            time.sleep(0.3)       
+            data = self.firmata().i2c_get_read_data(self.ADDR)
+            if (data is not None):
+                ch0_data = data[1:3]
+                ch1_data = data[3:]
+            thread_lock.release()
+            
+            if (ch0_data is not None and ch1_data is not None):
+                self._Sensor__value = self.rawToLUX(ch0_data, ch1_data)
+                #return self.rawToLUX(ch0_data, ch1_data)
+            
+            else:
+                self._Sensor__value = -1
+            #return -1
+            time.sleep(0.7)
