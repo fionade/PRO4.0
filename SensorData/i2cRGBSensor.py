@@ -92,19 +92,19 @@ class i2cRGBSensor(i2cSensor):
     i2c RGB sensor
     '''
      
-    def __init__(self, name, sensorType):
+    def __init__(self, name, sensorType, firmata):
         '''
         Constructor
         '''
-        i2cSensor.__init__(self, name, sensorType)
+        i2cSensor.__init__(self, name, sensorType, firmata)
      
          
     def getCurrentData(self):
         raise NotImplementedError("Not implemented")
      
-    def initCommunication(self, firmata):
+    def initCommunication(self):
                  
-        firmata.i2c_write(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_ID)
+        self.firmata().i2c_write(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_ID)
         time.sleep(5)
         
 #         firmata.i2c_write(TCS34725_ADDRESS, TCS34725_ENABLE_PON)
@@ -113,7 +113,7 @@ class i2cRGBSensor(i2cSensor):
 #         firmata.i2c_read(TCS34725_ADDRESS, TCS34725_ID, 1, firmata.I2C_READ)
 #         time.sleep(5)
 
-        ver = firmata.i2c_get_read_data(TCS34725_ADDRESS)
+        ver = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
         time.sleep(5)
 
         if (ver == 0x44):
@@ -134,7 +134,7 @@ class i2cRGBSensor(i2cSensor):
  
  
      
-    def read(self, firmata):
+    def read(self):
         color =  {}
 #         firmata.i2c_write(TCS34725_ADDRESS, TCS34725_RDATAL)
 #         time.sleep(1)

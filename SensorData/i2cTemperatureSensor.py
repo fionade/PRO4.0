@@ -11,17 +11,14 @@ class i2cTemperatureSensor(i2cSensor):
     '''
 
 
-    def __init__(self, name, sensorType):
+    def __init__(self, name, sensorType, firmata):
         '''
         Constructor
         '''
         
         # call parent constructor
-        i2cSensor.__init__(self, "name", "sensorType")
+        i2cSensor.__init__(self, name, sensorType, firmata)
     
-    
-    def getCurrentData(self):
-        raise NotImplementedError("Not implemented")
     
     def initCommunication(self):
         raise NotImplementedError("Not implemented")

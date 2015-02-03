@@ -10,18 +10,35 @@ class Sensor(object):
     '''
 
 
-    def __init__(self, name, sensorType):
+    def __init__(self, name, sensorType, firmata):
         '''
         Constructor
         '''
+
+        
         self.__name = name
         self.__type = sensorType
         
         self.__rawValue = -1
         self.__value = -1
         
+        self.__firmata = firmata
+        
+        self.__thread = None
+        self.__running = False
+
         # TODO: timestamp?
     
         
-    def getCurrentData(self):
+    def getValue(self):
         raise NotImplementedError("Method not implemented.")
+
+
+    def read(self, firmata):
+        return self.__value
+    
+    def initCommunication(self):
+        raise NotImplementedError("Not implemented")
+    
+    def firmata(self):
+        return self.__firmata

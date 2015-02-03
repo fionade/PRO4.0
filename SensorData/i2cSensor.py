@@ -11,16 +11,10 @@ class i2cSensor(Sensor):
     '''
 
 
-    def __init__(self, name, sensorType):
+    def __init__(self, name, sensorType, firmata):
         '''
         Constructor
         '''
         
-        Sensor.__init__(self, name, sensorType)
-    
-    def read(self):
-        raise NotImplementedError("Not implemented")
-    
-    def initCommunication(self, firmata):
-        raise NotImplementedError("Not implemented")
+        Sensor.__init__(self, name, sensorType, firmata)
     
