@@ -65,9 +65,9 @@ if __name__ == '__main__':
     # list all attached sensors
     sensors = []
     #sensors.append(i2cTemperatureSensor("id", "type", firmata))
-    sensors.append(i2cLightSensor(1, "light", firmata, THREAD_LOCK))
-    sensors.append(HIH6130(2, "humidity_temperature", firmata, THREAD_LOCK))
-    #sensors.append(MPL3115A2(3, "altitude", firmata))
+    #sensors.append(i2cLightSensor(1, "light", firmata, THREAD_LOCK))
+    #sensors.append(HIH6130(2, "humidity_temperature", firmata, THREAD_LOCK))
+    sensors.append(MPL3115A2(3, "altitude", firmata))
     #sensors.append(i2cRGBSensor(2, "rgb", firmata))
     
     # database/file
