@@ -15,6 +15,35 @@ from MPL3115A2 import MPL3115A2
 def initDatabase(dbAddress):
     pass
 
+    def __init__(self, arduinoAddress, dbAddress, sensors):
+        # database/file
+        self.__database = self.initDatabase(dbAddress)
+        
+        # board setup
+        self.__firmata = PyMata(arduinoAddress)
+        # initialise for i2c calls
+        self.__firmata.i2c_config(0, self.__firmata.DIGITAL, 21, 20)
+        
+        # sensors
+        # TODO: differentiate between different types of sensors
+        self.__sensors = self.initSensors(sensors)
+        
+    
+    def initDatabase(self, dbAddress):
+        pass
+
+    
+    def initSensors(self, sensors):
+        for s in sensors:
+            # TODO: some sensor init function
+            # on the sensor instance or globally for all?
+            # how to get a device's address?
+            count = 0
+            while (count < 1):
+                print ("Setting up " + str(s))
+                s.initCommunication(self.__firmata)
+                time.sleep(0.5)
+                count = count + 1   
 
 def initSensors(sensors, firmata):
     for s in sensors:
@@ -49,7 +78,7 @@ start loop to collect sensor data and write to database/file
 if __name__ == '__main__':
     
     # config
-    arduinoAddress = "/dev/tty.usbmodemfa141"
+    arduinoAddress = "/dev/tty.usbmodem1421"
     dbAddress = ""
     
     # board setup
@@ -62,10 +91,10 @@ if __name__ == '__main__':
     # list all attached sensors
     sensors = []
     #sensors.append(i2cTemperatureSensor("id", "type"))
-    sensors.append(i2cLightSensor(1, "light", firmata))
-    sensors.append(HIH6130(2, "humidity_temperature", firmata))
+#     sensors.append(i2cLightSensor(1, "light", firmata))
+#     sensors.append(HIH6130(2, "humidity_temperature", firmata))
     #sensors.append(MPL3115A2(3, "altitude"))
-    #sensors.append(i2cRGBSensor(2, "rgb"))
+    sensors.append(i2cRGBSensor(2, "rgb", firmata))
     
     # database/file
     database = initDatabase(dbAddress)
