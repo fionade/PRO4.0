@@ -54,36 +54,75 @@ class MPL3115A2(i2cSensor):
 
     def initCommunication(self):
 
-        # Set to Altimeter with an OSR = 128
-        print(self.MPL3115_PRESSURE_DATA | 0x38 | 0x80)
-        self.firmata().i2c_write(self.MPL3115_ADDR, self.MPL3115_CTRL_REG1, self.MPL3115_PRESSURE_DATA | 0x38 | 0x80)
-        # Enable Data Flags in PT_DATA_CFG
-        self.firmata().i2c_write(self.MPL3115_ADDR, self.MPL3115_PT_DATA_CFG, 0x07)
-        # Set Active (polling)
-        #firmata.i2c_write(self.MPL3115_ADDR, self.MPL3115_CTRL_REG1, 0xB9)
+#         # Set to Altimeter with an OSR = 128
+#         print(self.MPL3115_PRESSURE_DATA | 0x38 | 0x80)
+#         self.firmata().i2c_write(self.MPL3115_ADDR, [self.MPL3115_CTRL_REG1, self.MPL3115_PRESSURE_DATA | 0x38 | 0x80])
+#         # Enable Data Flags in PT_DATA_CFG
+#         self.firmata().i2c_write(self.MPL3115_ADDR, self.MPL3115_PT_DATA_CFG, 0x07)
+#         # Set Active (polling)
+#         #firmata.i2c_write(self.MPL3115_ADDR, self.MPL3115_CTRL_REG1, 0xB9)
+#         
+#         time.sleep(1)
+#         
+#         self.firmata().i2c_read(self.MPL3115_ADDR, self.MPL3115_CTRL_REG1, 3, self.firmata().I2C_READ)
+#         time.sleep(1)
+#         print(self.firmata().i2c_get_read_data(self.MPL3115_ADDR))
+
+        self.firmata().i2c_read(self.MPL3115_ADDR, 0, 1, self.firmata().I2C_READ)
+        # TODO: check how this can be reduced
+        time.sleep(3)
+        ctrl = self.firmata().i2c_get_read_data(self.MPL3115_ADDR)
+        #print(ctrl[1] & 0xfe)
         
-        time.sleep(1)
-        
-        self.firmata().i2c_read(self.MPL3115_ADDR, self.MPL3115_CTRL_REG1, 3, self.firmata().I2C_READ)
+        self.firmata().i2c_write(self.MPL3115_ADDR, self.MPL3115_CTRL_REG1, ctrl[1] & 0xfe)
+        time.sleep(2)
+        self.firmata().i2c_read(self.MPL3115_ADDR, 0, 1, self.firmata().I2C_READ)
         time.sleep(1)
         print(self.firmata().i2c_get_read_data(self.MPL3115_ADDR))
         
+        time.sleep(1)
+        self.firmata().i2c_write(self.MPL3115_ADDR, 0x26, 0xb8)
+        
+        time.sleep(1)
+        self.firmata().i2c_read(self.MPL3115_ADDR, 0x26, 1, self.firmata().I2C_READ)
+        time.sleep(1)
+        print(self.firmata().i2c_get_read_data(self.MPL3115_ADDR))
+        
+#         
+#         self.firmata().i2c_write(self.MPL3115_ADDR, 0x2d, 0x00)
+#         self.firmata().i2c_write(self.MPL3115_ADDR, 0x26, 0xb8)
+#         self.firmata().i2c_write(self.MPL3115_ADDR, 0x13, 0x07)
+#         
+#         self.firmata().i2c_write(self.MPL3115_ADDR, 0x26, 0xb9)
+        
     def read(self):
+        
+        self.firmata().i2c_read(self.MPL3115_ADDR, 0, 1, self.firmata().I2C_READ)
+        time.sleep(0.2)
+        ctrl = self.firmata().i2c_get_read_data(self.MPL3115_ADDR)
+        print(ctrl)
+        
+#         self.firmata().i2c_read(0x60, 0x01, 5, self.firmata().I2C_READ)
+#         data = self.firmata().i2c_get_read_data(0x60)
+#         
+#         if (data is not None):
+#             return data
+        
         #firmata.i2c_write(self.MPL3115_ADDR, self.MPL3115_STATUS)
-        time.sleep(0.1)
-        self.firmata().i2c_read(self.MPL3115_ADDR, self.MPL3115_STATUS, 1, self.firmata().I2C_READ)
-        time.sleep(1)
-        STA = self.firmata().i2c_get_read_data(self.MPL3115_ADDR)
-        
-        #if (STA & 0x04) == 4:
-        # OUT_P
-        self.firmata().i2c_write(self.MPL3115_ADDR, 0x03)
-        time.sleep(0.1)
-        self.firmata().i2c_read(self.MPL3115_ADDR, 0x03, 3, self.firmata().I2C_READ)
-        time.sleep(1)
-        OUT_P_MSB = self.firmata().i2c_get_read_data(self.MPL3115_ADDR)
-        
-        return (STA, OUT_P_MSB)
+#         time.sleep(0.1)
+#         self.firmata().i2c_read(self.MPL3115_ADDR, self.MPL3115_STATUS, 1, self.firmata().I2C_READ)
+#         time.sleep(1)
+#         STA = self.firmata().i2c_get_read_data(self.MPL3115_ADDR)
+#         
+#         #if (STA & 0x04) == 4:
+#         # OUT_P
+#         self.firmata().i2c_write(self.MPL3115_ADDR, 0x03)
+#         time.sleep(0.1)
+#         self.firmata().i2c_read(self.MPL3115_ADDR, 0x03, 3, self.firmata().I2C_READ)
+#         time.sleep(1)
+#         OUT_P_MSB = self.firmata().i2c_get_read_data(self.MPL3115_ADDR)
+#         
+#         return (STA, OUT_P_MSB)
 #         
 #         firmata.i2c_read(self.MPL3115_ADDR, 0x02, 1, firmata.I2C_READ)
 #         time.sleep(1)

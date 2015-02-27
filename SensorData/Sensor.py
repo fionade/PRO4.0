@@ -34,7 +34,7 @@ class Sensor(object):
         raise NotImplementedError("Method not implemented.")
 
 
-    def read(self, firmata):
+    def read(self):
         return self.__value
     
     def initCommunication(self):

@@ -104,12 +104,7 @@ class i2cRGBSensor(i2cSensor):
      
     def initCommunication(self):
                  
-
-        self.firmata().i2c_write(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_ID)
- 
-        time.sleep(1)
-                   
-        self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_ID, 1, self.firmata().I2C_READ)
+        self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_ID, 1, self.firmata().I2C_READ)
         time.sleep(1)
 
         ver = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
@@ -125,38 +120,75 @@ class i2cRGBSensor(i2cSensor):
         else :
             print ("No Connection")
              
-#     
-#         self.firmata().i2c_write(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_ENABLE) # 0x00 = ENABLE register
-#         self.firmata().i2c_write(TCS34725_ADDRESS, TCS34725_ENABLE_PON | TCS34725_ENABLE_AEN) # 0x01 = Power on, 0x02 RGB sensors enabled
-#         self.firmata().i2c_write(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_CDATAL) # Reading results start register 14, LSB then MSB
+     
+        self.firmata().i2c_write(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_ENABLE) # 0x00 = ENABLE register
+        self.firmata().i2c_write(TCS34725_ADDRESS, TCS34725_ENABLE_PON | TCS34725_ENABLE_AEN) # 0x01 = Power on, 0x02 RGB sensors enabled
+        self.firmata().i2c_write(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_CDATAL) # Reading results start register 14, LSB then MSB
  
 
-#test integration times
-#         self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME)
+# #test integration times
+# #         self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME)
+# #         time.sleep(2)
+#         self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_ATIME, 4, self.firmata().I2C_READ)
 #         time.sleep(2)
-        self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_ATIME, 4, self.firmata().I2C_READ)
-        time.sleep(2)
-#         int_time = 0
-        int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
-        time.sleep(2)
-        
-        print ("Integration Time (no write) is")
-        print int_time 
-        print ("...")
-        
-        
-        self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME, TCS34725_INTEGRATIONTIME_2_4MS)
-        time.sleep(2)
-        self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_ATIME, 9, self.firmata().I2C_READ)
-        time.sleep(2)
-#         int_time = 0
-        int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
-        time.sleep(2)
-        print ("Integration Time is")
-        print int_time 
-        print ("...")
-        
-#         self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME, TCS34725_INTEGRATIONTIME_24MS)
+# #         int_time = 0
+#         int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
+#         time.sleep(2)
+#         
+#         print ("Integration Time (no write) is")
+#         print int_time 
+#         print ("...")
+#         
+#         
+#         self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME, TCS34725_INTEGRATIONTIME_2_4MS)
+#         time.sleep(2)
+#         self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_ATIME, 9, self.firmata().I2C_READ)
+#         time.sleep(2)
+# #         int_time = 0
+#         int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
+#         time.sleep(2)
+#         print ("Integration Time is")
+#         print int_time 
+#         print ("...")
+#         
+# #         self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME, TCS34725_INTEGRATIONTIME_24MS)
+# #         time.sleep(2)
+# #         self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_ATIME, 9, self.firmata().I2C_READ)
+# #         time.sleep(2)
+# # #         int_time = 0
+# #         int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
+# #         time.sleep(2)
+# #         print ("Integration Time is")
+# #         print int_time 
+# #         print ("...")  
+# 
+#         self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT | TCS34725_ATIME)
+#         time.sleep(2)
+#         self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT | TCS34725_INTEGRATIONTIME_50MS)
+#         time.sleep(2)
+# 
+#         self.firmata().i2c_read(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT | TCS34725_ATIME, 9, self.firmata().I2C_READ)
+#         time.sleep(2)
+# #         int_time = 0
+#         int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
+#         time.sleep(2)
+#         print ("Integration Time is")
+#         print int_time 
+#         print ("...")
+#         
+#         
+#         self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME | TCS34725_INTEGRATIONTIME_101MS)
+#         time.sleep(2)
+#         self.firmata().i2c_read(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT | TCS34725_ATIME, 9, self.firmata().I2C_READ)
+#         time.sleep(2)
+# #         int_time = 0
+#         int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
+#         time.sleep(2)
+#         print ("Integration Time is")
+#         print int_time 
+#         print ("...")
+#         
+#         self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME, TCS34725_INTEGRATIONTIME_154MS)
 #         time.sleep(2)
 #         self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_ATIME, 9, self.firmata().I2C_READ)
 #         time.sleep(2)
@@ -165,72 +197,38 @@ class i2cRGBSensor(i2cSensor):
 #         time.sleep(2)
 #         print ("Integration Time is")
 #         print int_time 
-#         print ("...")  
-
-        self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME, TCS34725_INTEGRATIONTIME_50MS)
-        time.sleep(2)
-        self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_ATIME, 9, self.firmata().I2C_READ)
-        time.sleep(2)
-#         int_time = 0
-        int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
-        time.sleep(2)
-        print ("Integration Time is")
-        print int_time 
-        print ("...")
-        
-        
-        self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME, TCS34725_INTEGRATIONTIME_101MS)
-        time.sleep(2)
-        self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_ATIME, 9, self.firmata().I2C_READ)
-        time.sleep(2)
-#         int_time = 0
-        int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
-        time.sleep(2)
-        print ("Integration Time is")
-        print int_time 
-        print ("...")
-        
-        self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME, TCS34725_INTEGRATIONTIME_154MS)
-        time.sleep(2)
-        self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_ATIME, 9, self.firmata().I2C_READ)
-        time.sleep(2)
-#         int_time = 0
-        int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
-        time.sleep(2)
-        print ("Integration Time is")
-        print int_time 
-        print ("...")
-        
-        
-        self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME, TCS34725_INTEGRATIONTIME_700MS)
-        time.sleep(2)
-        self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_ATIME, 9, self.firmata().I2C_READ)
-        time.sleep(2)
-#         int_time = 0
-        int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
-        time.sleep(2)
-        print ("Integration Time is")
-        print int_time 
-        print ("...")
-        
-        
-        self.setIntegrationTime(TCS34725_INTEGRATIONTIME_700MS)
-        time.sleep(1)
-
-        self.getIntegrationTime()
-        time.sleep(3)
-
-        self.setIntegrationTime( TCS34725_INTEGRATIONTIME_700MS)
-        time.sleep(1)
-
-        self.getIntegrationTime()
-        time.sleep(3)
-        
-        self.setIntegrationTime(TCS34725_INTEGRATIONTIME_2_4MS)
-        time.sleep(1)
-
-        self.getIntegrationTime()
-        time.sleep(3)
+#         print ("...")
+#         
+#         
+#         self.firmata().i2c_write(TCS34725_ADDRESS,  TCS34725_COMMAND_BIT |TCS34725_ATIME, TCS34725_INTEGRATIONTIME_700MS)
+#         time.sleep(2)
+#         self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_ATIME, 9, self.firmata().I2C_READ)
+#         time.sleep(2)
+# #         int_time = 0
+#         int_time = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
+#         time.sleep(2)
+#         print ("Integration Time is")
+#         print int_time 
+#         print ("...")
+#         
+#         
+#         self.setIntegrationTime(TCS34725_INTEGRATIONTIME_700MS)
+#         time.sleep(1)
+# 
+#         self.getIntegrationTime()
+#         time.sleep(3)
+# 
+#         self.setIntegrationTime( TCS34725_INTEGRATIONTIME_700MS)
+#         time.sleep(1)
+# 
+#         self.getIntegrationTime()
+#         time.sleep(3)
+#         
+#         self.setIntegrationTime(TCS34725_INTEGRATIONTIME_2_4MS)
+#         time.sleep(1)
+# 
+#         self.getIntegrationTime()
+#         time.sleep(3)
 
 #         
 #         self.setIntegrationTime(TCS34725_INTEGRATIONTIME_50MS)
@@ -267,9 +265,10 @@ class i2cRGBSensor(i2cSensor):
 
     def read(self):
         rgb =  {}
-        self.firmata().i2c_write(TCS34725_ADDRESS, TCS34725_RDATAL)
+        self.firmata().i2c_write(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_RDATAL)
         time.sleep(1)
-        self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_RDATAL, 1, self.firmata().I2C_READ)
+
+        self.firmata().i2c_read(TCS34725_ADDRESS, TCS34725_COMMAND_BIT | TCS34725_RDATAL, 9, self.firmata().I2C_READ)
         time.sleep(1)
         rgb["r"] = self.firmata().i2c_get_read_data(TCS34725_ADDRESS)
          

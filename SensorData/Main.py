@@ -10,8 +10,11 @@ import time
 from i2cRGBSensor import i2cRGBSensor
 from HIH6130 import HIH6130
 from MPL3115A2 import MPL3115A2
+import thread
 
-    
+
+THREAD_LOCK = thread.allocate_lock()
+
 def initDatabase(dbAddress):
     pass
 
@@ -52,7 +55,7 @@ def initSensors(sensors, firmata):
         # how to get a device's address?
         print ("Setting up " + str(s))
         s.initCommunication()
-    time.sleep(0.5)
+    time.sleep(1)
 
 
 def writeToDatabase(data):
@@ -95,6 +98,7 @@ if __name__ == '__main__':
 #     sensors.append(HIH6130(2, "humidity_temperature", firmata))
     #sensors.append(MPL3115A2(3, "altitude"))
     sensors.append(i2cRGBSensor(2, "rgb", firmata))
+
     
     # database/file
     database = initDatabase(dbAddress)
