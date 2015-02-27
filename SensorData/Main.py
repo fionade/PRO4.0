@@ -13,6 +13,7 @@ from MPL3115A2 import MPL3115A2
 import thread
 
 
+
 THREAD_LOCK = thread.allocate_lock()
 
 def initDatabase(dbAddress):
