@@ -6,8 +6,9 @@ Created on 22.01.2015
 from PyMata.pymata import PyMata
 #from i2cTemperatureSensor import i2cTemperatureSensor
 from i2cLightSensor import i2cLightSensor
+from AnalogSensor import AnalogSensor
 import time
-from i2cRGBSensor import i2cRGBSensor
+#from i2cRGBSensor import i2cRGBSensor
 from HIH6130 import HIH6130
 from MPL3115A2 import MPL3115A2
 import thread
@@ -63,7 +64,7 @@ def writeToDatabase(data):
     raise NotImplementedError("Not implemented")
 
 
-def loop(sensors, firmata):
+def loop(sensors, analogSensors, firmata):
     # iterate through all sensors, get their data (they should all implement a getData function, depending on their type
     # and write to file
     # print('listening')
@@ -71,6 +72,11 @@ def loop(sensors, firmata):
         # TODO: one thread per sensor and then just read the last value.
         data = s.read()
         print(data)
+    
+    for aS in analogSensors:
+        data = aS.getValue()
+        print(aS.getPinNr(), data)
+    
     time.sleep(1)
 
 
@@ -82,7 +88,7 @@ start loop to collect sensor data and write to database/file
 if __name__ == '__main__':
     
     # config
-    arduinoAddress = "/dev/tty.usbmodem1421"
+    arduinoAddress = "/dev/tty.usbmodemfa141"
     dbAddress = ""
     
     # board setup
@@ -94,12 +100,20 @@ if __name__ == '__main__':
     
     # list all attached sensors
     sensors = []
-    #sensors.append(i2cTemperatureSensor("id", "type"))
-#     sensors.append(i2cLightSensor(1, "light", firmata))
-#     sensors.append(HIH6130(2, "humidity_temperature", firmata))
-    #sensors.append(MPL3115A2(3, "altitude"))
-    sensors.append(i2cRGBSensor(2, "rgb", firmata))
 
+    #sensors.append(i2cTemperatureSensor("id", "type", firmata))
+    #sensors.append(i2cLightSensor(1, "light", firmata, THREAD_LOCK))
+    #sensors.append(HIH6130(2, "humidity_temperature", firmata, THREAD_LOCK))
+    #sensors.append(MPL3115A2(3, "altitude", firmata))
+    #sensors.append(i2cRGBSensor(2, "rgb", firmata))
+    
+    analogSensors = []
+    analogSensors.append(AnalogSensor("a0", "weight", 0, firmata))
+    analogSensors.append(AnalogSensor("a3", "weight", 3, firmata))
+    analogSensors.append(AnalogSensor("a5", "weight", 5, firmata))
+    analogSensors.append(AnalogSensor("a8", "weight", 8, firmata))
+    analogSensors.append(AnalogSensor("a9", "weight", 9, firmata))
+    analogSensors.append(AnalogSensor("a10", "weight", 10, firmata))
     
     # database/file
     database = initDatabase(dbAddress)
@@ -111,5 +125,5 @@ if __name__ == '__main__':
     #run = Main(arduinoAddress, dbAddress, sensors)
     
     while True:
-        loop(sensors, firmata)
+        loop(sensors, analogSensors, firmata)
 

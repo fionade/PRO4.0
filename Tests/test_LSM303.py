@@ -80,8 +80,17 @@ if __name__ == '__main__':
     #Enable the accelerometer
     # write8(LSM303_ADDRESS_ACCEL, LSM303_REGISTER_ACCEL_CTRL_REG1_A, 0x27);
     firmata.i2c_write(LSM303_ADDRESS_ACCEL, LSM303_REGISTER_ACCEL_CTRL_REG1_A, 0x27)
+    # set resolution
+    firmata.i2c_write(LSM303_REGISTER_ACCEL_CTRL_REG4_A, 0)
     
     time.sleep(1)
+    
+    # read control register (only 7s..)
+    firmata.i2c_read(LSM303_ADDRESS_ACCEL, LSM303_REGISTER_ACCEL_CTRL_REG1_A, 1, firmata.I2C_READ)
+    
+    time.sleep(4)
+    
+    print("register " + str(firmata.i2c_get_read_data(LSM303_ADDRESS_ACCEL)))
     
     #Enable the magnetometer
     #write8(LSM303_ADDRESS_MAG, LSM303_REGISTER_MAG_MR_REG_M, 0x00);
@@ -94,17 +103,17 @@ if __name__ == '__main__':
         #Wire.write(LSM303_REGISTER_ACCEL_OUT_X_L_A | 0x80);
         #Wire.endTransmission();
         #Wire.requestFrom((byte)LSM303_ADDRESS_ACCEL, (byte)6);    
-        firmata.i2c_write(LSM303_ADDRESS_ACCEL, LSM303_REGISTER_ACCEL_OUT_X_L_A, 0x80)
+        firmata.i2c_write(LSM303_ADDRESS_ACCEL, LSM303_REGISTER_ACCEL_OUT_X_L_A | 0x80)
         
-#           Wire.beginTransmission((byte)LSM303_ADDRESS_ACCEL);
-#   Wire.write(LSM303_REGISTER_ACCEL_OUT_X_L_A | 0x80);
-#   Wire.endTransmission();
-#   Wire.requestFrom((byte)LSM303_ADDRESS_ACCEL, (byte)6);
+        time.sleep(0.5)
+        firmata.i2c_read(LSM303_ADDRESS_ACCEL, LSM303_REGISTER_ACCEL_OUT_X_L_A | 0x80, 6, firmata.I2C_READ)
         
-        time.sleep(1)
-        
-        firmata.i2c_read(LSM303_ADDRESS_ACCEL, LSM303_REGISTER_ACCEL_OUT_X_L_A, 6, firmata.I2C_READ)
-        
-        time.sleep(1)
+        time.sleep(3)
     
         print(firmata.i2c_get_read_data(LSM303_ADDRESS_ACCEL))
+        
+        firmata.i2c_write(LSM303_ADDRESS_MAG, LSM303_REGISTER_MAG_OUT_X_H_M)        
+        firmata.i2c_read(LSM303_ADDRESS_MAG, LSM303_REGISTER_MAG_OUT_X_H_M, 6, firmata.I2C_READ)
+        
+        time.sleep(3)
+        print(firmata.i2c_get_read_data(LSM303_ADDRESS_MAG))

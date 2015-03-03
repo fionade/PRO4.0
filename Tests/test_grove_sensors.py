@@ -11,7 +11,7 @@ import math
 from time import sleep
 import os.path
 
-PORT = '/dev/cu.usbmodemfd141'
+PORT = '/dev/tty.usbmodemfa141'
 #PINS = (0, 1, 2, 3)
 
 
