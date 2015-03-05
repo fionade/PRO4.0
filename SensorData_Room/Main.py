@@ -75,7 +75,7 @@ def loop(sensors, analogSensors, firmata):
     
     for aS in analogSensors:
         data = aS.getValue()
-        print(aS.getPinNr(), data)
+        print(aS.getSensorType() + ": " + str(data))
     
     time.sleep(1)
 
@@ -88,13 +88,14 @@ start loop to collect sensor data and write to database/file
 if __name__ == '__main__':
     
     # config
+#     arduinoAddress = "/dev/tty.usbmodemfa141"
     arduinoAddress = "/dev/tty.usbmodemfa141"
     dbAddress = ""
     
     # board setup
     firmata = PyMata(arduinoAddress)
     # initialise for i2c calls
-    firmata.i2c_config(0, firmata.DIGITAL, 21, 20)
+#     firmata.i2c_config(0, firmata.DIGITAL, 21, 20)
     
     # TODO: add firmata to constructors
     
@@ -106,14 +107,26 @@ if __name__ == '__main__':
     #sensors.append(HIH6130(2, "humidity_temperature", firmata, THREAD_LOCK))
     #sensors.append(MPL3115A2(3, "altitude", firmata))
     #sensors.append(i2cRGBSensor(2, "rgb", firmata))
+#     sensors.append(digitGlight(4, "digitGlight", firmata)) 
+
     
     analogSensors = []
-    analogSensors.append(AnalogSensor("a0", "weight", 0, firmata))
-    analogSensors.append(AnalogSensor("a3", "weight", 3, firmata))
-    analogSensors.append(AnalogSensor("a5", "weight", 5, firmata))
-    analogSensors.append(AnalogSensor("a8", "weight", 8, firmata))
-    analogSensors.append(AnalogSensor("a9", "weight", 9, firmata))
-    analogSensors.append(AnalogSensor("a10", "weight", 10, firmata))
+#     analogSensors.append(AnalogSensor("a0", "weight", 0, firmata))
+#     analogSensors.append(AnalogSensor("a3", "weight", 3, firmata))
+#     analogSensors.append(AnalogSensor("a5", "weight", 5, firmata))
+#     analogSensors.append(AnalogSensor("a8", "weight", 8, firmata))
+#     analogSensors.append(AnalogSensor("a9", "weight", 9, firmata))
+#     analogSensors.append(AnalogSensor("a10", "weight", 10, firmata))
+     
+    analogSensors.append(AnalogSensor("a0", "Glight", 0, firmata))
+    analogSensors.append(AnalogSensor("a1", "Gtemperature", 1, firmata))
+    analogSensors.append(AnalogSensor("a2", "Gsound", 2, firmata))
+    analogSensors.append(AnalogSensor("a3", "GairQuality", 3, firmata))
+
+
+
+
+
     
     # database/file
     database = initDatabase(dbAddress)
@@ -124,6 +137,10 @@ if __name__ == '__main__':
     
     #run = Main(arduinoAddress, dbAddress, sensors)
     
-    while True:
-        loop(sensors, analogSensors, firmata)
+    try:
+        while True:
+            loop(sensors, analogSensors, firmata)
+    
+    except KeyboardInterrupt:
+        exit()
 

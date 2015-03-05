@@ -7,7 +7,7 @@ from i2cSensor import i2cSensor
 import time
 import thread
 
-class i2cLightSensor(i2cSensor):
+class TSL2561(i2cSensor):
     '''
     i2c light sensor
     '''

@@ -33,6 +33,8 @@ class Sensor(object):
     def getValue(self):
         raise NotImplementedError("Method not implemented.")
 
+    def getName(self):
+        return self.__name
 
     def read(self):
         return self.__value

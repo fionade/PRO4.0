@@ -1,0 +1,55 @@
+{
+	"i2cSensors": [
+		{
+			"name": "i2c0",
+			"type": "light",
+			"class": "TSL2561"
+		}
+	],
+	
+	"AnalogSensors": [
+		{
+			"name": "a0",
+			"type": "temp_hum",
+			"pin": "0"
+		},
+		{
+			"name": "a2",
+			"type": "weight",
+			"pin": "2"
+		},
+		{
+			"name": "a3",
+			"type": "mic",
+			"pin": "3"
+		},
+		{
+			"name": "a5",
+			"type": "vibration",
+			"pin": "5"
+		},
+		{
+			"name": "a8",
+			"type": "accelX",
+			"pin": "8"
+		},
+		{
+			"name": "a9",
+			"type": "accelY",
+			"pin": "9"
+		},
+		{
+			"name": "a10",
+			"type": "accelZ",
+			"pin": "10"
+		}
+	],
+	
+	"DigitalSensors": [
+		{
+			"name": "d0",
+			"type": "xyz",
+			"pin": "0"
+		}
+	]
+}
