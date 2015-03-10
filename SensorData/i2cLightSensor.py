@@ -61,7 +61,8 @@ class i2cLightSensor(i2cSensor):
     LUX_B8T                   = 0x0000   # 0.000 * 2^    LUX_SCALE
     LUX_M8T                   = 0x0000   # 0.000 * 2^    LUX_SCALE
     
-    ADDR = 0x39
+    ADDR = 0x29
+
 
     def __init__(self, name, sensorType, firmata, thread_lock):
         '''
@@ -80,6 +81,7 @@ class i2cLightSensor(i2cSensor):
         
         self._Sensor__running = True
         self._Sensor__thread = thread.start_new_thread(self.poll, (self.__thread_lock,))
+        
         
     def rawToLUX(self, ch0, ch1):
         chScale = (1 << self.LUX_CHSCALE);
@@ -156,8 +158,15 @@ class i2cLightSensor(i2cSensor):
             if (ch0_data is not None and ch1_data is not None):
                 self._Sensor__value = self.rawToLUX(ch0_data, ch1_data)
                 #return self.rawToLUX(ch0_data, ch1_data)
+                self._Sensor__value = 666
+
+                
+
             
             else:
+
                 self._Sensor__value = -1
+                self._Sensor__value = data
+
             #return -1
             time.sleep(0.7)
