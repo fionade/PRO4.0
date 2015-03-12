@@ -9,13 +9,6 @@ from Sensor import Sensor
 import math
 import time
 
-=======
-Created on 05.03.2015
-
-@author: fiona
-'''
-from Sensor import Sensor
->>>>>>> origin/master
 
 class DigitalSensor(Sensor):
     '''
@@ -27,7 +20,6 @@ class DigitalSensor(Sensor):
         '''
         Constructor
         '''
-<<<<<<< HEAD
         
         Sensor.__init__(self, name, sensorType, firmata)
         self.__pinNr = pinNr
@@ -89,17 +81,7 @@ class DigitalSensor(Sensor):
             
             
 #         return(self._Sensor__value)
-=======
-                
-        Sensor.__init__(self, name, sensorType, firmata)
-        self.__pinNr = pinNr
-        firmata.enable_digital_reporting(pinNr)
-    
-    
-    def getValue(self):
-        self._Sensor__value = self.firmata().digital_read(self.__pinNr)
-        return(self._Sensor__value)
->>>>>>> origin/master
+
     
     def getPinNr(self):
         return self.__pinNr
