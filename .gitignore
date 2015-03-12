@@ -12,3 +12,7 @@
 *.pyc
 
 *.pyc
+
+SensorData/TSL2561.py
+
+SensorData/TCS2600.py
