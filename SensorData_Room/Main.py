@@ -77,11 +77,15 @@ def loop(sensors, analogSensors, digitalSensors, firmata):
     
     for aS in analogSensors:
         data = aS.getValue()
+<<<<<<< HEAD:SensorData/Main.py
         print(aS.getPinNr(), data)
         
     for dS in digitalSensors:
         data = dS.getValue()
         print(dS.getPinNr(), data)
+=======
+        print(aS.getSensorType() + ": " + str(data))
+>>>>>>> origin/master:SensorData_Room/Main.py
     
     time.sleep(1)
 
@@ -95,7 +99,11 @@ if __name__ == '__main__':
     
     # config
 #     arduinoAddress = "/dev/tty.usbmodemfa141"
+<<<<<<< HEAD:SensorData/Main.py
     arduinoAddress = "/dev/tty.usbmodem1421"
+=======
+    arduinoAddress = "/dev/tty.usbmodemfa141"
+>>>>>>> origin/master:SensorData_Room/Main.py
     dbAddress = ""
     
     # board setup
@@ -115,11 +123,16 @@ if __name__ == '__main__':
     #sensors.append(i2cRGBSensor(2, "rgb", firmata))
 #     sensors.append(digitGlight(4, "digitGlight", firmata)) 
 
+<<<<<<< HEAD:SensorData/Main.py
 
     
     analogSensors = []
 #     TODO : gas v1.4, barometer
 
+=======
+    
+    analogSensors = []
+>>>>>>> origin/master:SensorData_Room/Main.py
 #     analogSensors.append(AnalogSensor("a0", "weight", 0, firmata))
 #     analogSensors.append(AnalogSensor("a3", "weight", 3, firmata))
 #     analogSensors.append(AnalogSensor("a5", "weight", 5, firmata))
@@ -127,6 +140,7 @@ if __name__ == '__main__':
 #     analogSensors.append(AnalogSensor("a9", "weight", 9, firmata))
 #     analogSensors.append(AnalogSensor("a10", "weight", 10, firmata))
      
+<<<<<<< HEAD:SensorData/Main.py
     analogSensors.append(AnalogSensor("a0", "ga_light", 0, firmata))    #ok
     analogSensors.append(AnalogSensor("a1", "ga_temperature", 1, firmata))    #conversion?
     analogSensors.append(AnalogSensor("a1", "GA_gas1.3b", 1, firmata)) #ok
@@ -141,6 +155,12 @@ if __name__ == '__main__':
     digitalSensors = []
 #     digitalSensors.append(DigitalSensor("d3", "GD_light", 3, firmata)) 
 #     digitalSensors.append(DigitalSensor("d1", "GD_temphumid", 1, firmata))  #digital sensor in analog port
+=======
+    analogSensors.append(AnalogSensor("a0", "Glight", 0, firmata))
+    analogSensors.append(AnalogSensor("a1", "Gtemperature", 1, firmata))
+    analogSensors.append(AnalogSensor("a2", "Gsound", 2, firmata))
+    analogSensors.append(AnalogSensor("a3", "GairQuality", 3, firmata))
+>>>>>>> origin/master:SensorData_Room/Main.py
 
 
 
@@ -156,7 +176,16 @@ if __name__ == '__main__':
     
     #run = Main(arduinoAddress, dbAddress, sensors)
     
+<<<<<<< HEAD:SensorData/Main.py
     while True:
         loop(sensors, analogSensors, digitalSensors, firmata)
 
+=======
+    try:
+        while True:
+            loop(sensors, analogSensors, firmata)
+    
+    except KeyboardInterrupt:
+        exit()
+>>>>>>> origin/master:SensorData_Room/Main.py
 

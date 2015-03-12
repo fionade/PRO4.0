@@ -10,7 +10,6 @@ if __name__ == '__main__':
     
     # config
     arduinoAddress = "/dev/tty.usbmodemfa141"
-    dbAddress = ""
     
     # board setup
     firmata = PyMata(arduinoAddress)
@@ -19,5 +18,5 @@ if __name__ == '__main__':
 
     while True:
         print(firmata.analog_read(0))
-        time.sleep(0.1)
+        time.sleep(0.5)
 

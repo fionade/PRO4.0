@@ -64,6 +64,7 @@ if __name__ == '__main__':
             if (a != 0.0):
                 resistance=(float)((1 - a) * 10000/a)
                 temperature = 1/(math.log(resistance/10000)/B + 1/298.15) - 273.15
+                print(temperature)
             
             # LIGHT
             # 0 = low intensity, 1 high
@@ -75,7 +76,7 @@ if __name__ == '__main__':
             # SOUND
             sound = board.analog[2].read()
                 
-            writeDataToFile(csvfile, csvwriter, temperature, light, sound)
+            #writeDataToFile(csvfile, csvwriter, temperature, light, sound)
             
             board.pass_time(1)
     
