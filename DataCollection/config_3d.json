@@ -1,0 +1,75 @@
+{ 
+ 	"i2cSensors": [ 
+ 		{ 
+ 			"name": "Air_Pressure", 
+ 			"type": "Pressure", 
+ 			"class": "MPL3115A2" 
+ 		}, 
+ 		{ 
+ 			"name": "Light_Sensor", 
+ 			"type": "Light", 
+ 			"class": "TSL2561" 
+ 		},
+        { 
+ 			"name": "Temp_of_head", 
+ 			"type": "infra", 
+ 			"class": "MLX90614" 
+ 		},                
+        { 
+ 			"name": "Temp_of_head2", 
+ 			"type": "infra", 
+ 			"class": "MLX90614" 
+ 		}, 
+        { 
+ 			"name": "Table_temp", 
+ 			"type": "temp", 
+ 			"class": "MR003" 
+ 		}
+ 	], 
+ 	 
+ 	"AnalogSensors": [ 
+ 		{ 
+ 			"name": "Acc_Bet1", 
+ 			"type": "accelerometer", 
+ 			"pin": "8" 
+ 		}, 
+ 		{ 
+ 			"name": "Acc_Bet2", 
+ 			"type": "accelerometer", 
+ 			"pin": "9" 
+ 		}, 
+ 		{ 
+ 			"name": "Acc_Bet3", 
+ 			"type": "accelerometer", 
+ 			"pin": "10" 
+ 		}, 
+        { 
+ 			"name": "Vibration", 
+ 			"type": "vib", 
+ 			"pin": "5" 
+ 		}, 
+        { 
+ 			"name": "Mic", 
+ 			"type": "Mic", 
+ 			"pin": "3" 
+ 		}, 
+	    {
+            "name": "Temp_and_Humidity", 
+ 			"type": "temp_hum", 
+ 			"pin": "0" 
+        },
+        {
+            "name": "Height_of_bet", 
+ 			"type": "height", 
+ 			"pin": "15" 
+        },
+        { 
+ 			"name": "weight", 
+ 			"type": "weight", 
+ 			"pin": "2" 
+ 		}	
+ 	],
+ 	
+ 	"DigitalSensors": [
+ 	]
+} 
