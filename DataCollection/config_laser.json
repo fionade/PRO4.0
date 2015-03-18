@@ -1,0 +1,84 @@
+ { 
+ 	"i2cSensors": [ 
+ 		{ 
+ 			"name": "Air_Pressure", 
+ 			"type": "Pressure", 
+ 			"class": "MPL3115A2" 
+ 		}, 
+ 		{ 
+ 			"name": "Light_Sensor", 
+ 			"type": "Light", 
+ 			"class": "TSL2561" 
+ 		},
+        { 
+ 			"name": "Gas_MQ_9", 
+ 			"type": "gas", 
+ 			"class": "Gas_MQ_9" 
+ 		},
+ 		{ 
+ 			"name": "Lid_open", 
+ 			"type": "contact", 
+ 			"class": "switch" 
+ 		},
+ 		{ 
+ 			"name": "Gas_MQ_2", 
+ 			"type": "gas", 
+ 			"class": "Gas_MQ_2" 
+ 		},                        
+        
+        { 
+ 			"name": "Humidity_and_Temp", 
+ 			"type": "Temperature", 
+ 			"class": "DHT22" 
+ 		}, 
+        
+        { 
+ 			"name": "Colour_and_internsity_of_smoke", 
+ 			"type": "colour", 
+ 			"class": "TCS34725" 
+ 		},
+ 		{ 
+ 			"name": "Mic", 
+ 			"type": "Mic", 
+ 			"class": "microphone" 
+ 		}
+ 	], 
+ 	 
+ 	"AnalogSensors": [ 
+ 		{ 
+ 			"name": "Temp", 
+ 			"type": "temperature", 
+ 			"pin": "0" 
+ 		},  
+	    {
+        	"name": "air_speed", 
+ 			"type": "speed", 
+ 			"pin": "1" 
+ 		},
+    	{
+        	"name": "air_speed", 
+ 			"type": "speed", 
+ 			"pin": "3" 
+        },
+		
+        {
+        	"name": "air_speed", 
+ 			"type": "speed", 
+ 			"pin": "4" 
+ 		},
+        { 
+ 			"name": "air_quality", 
+ 			"type": "air", 
+ 			"pin": "6" 
+ 		},
+        { 
+ 			"name": "weight_laser", 
+ 			"type": "weight", 
+ 			"pin": "8" 
+ 		}
+
+ 	],
+ 	
+ 	"DigitalSensors": [
+ 	]
+ } 

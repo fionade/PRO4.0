@@ -1,0 +1,33 @@
+{ 
+ 	"i2cSensors": [ 
+
+ 	], 
+ 	 
+ 	"AnalogSensors": [ 
+ 		{ 
+ 			"name": "sound_sensor", 
+ 			"type": "grove", 
+ 			"pin": "0" 
+ 		},
+    		{ 
+ 			"name": "temp_sensor", 
+ 			"type": "grove", 
+ 			"pin": "1" 
+ 		},
+    		{ 
+ 			"name": "light_sensor", 
+ 			"type": "grove", 
+ 			"pin": "2" 
+ 		},
+    		{ 
+ 			"name": "movement_sensor", 
+ 			"type": "grove", 
+ 			"pin": "3" 
+ 		}
+        
+	
+ 	],
+ 	
+ 	"DigitalSensors": [
+ 	]
+} 

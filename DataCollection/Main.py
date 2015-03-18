@@ -10,16 +10,23 @@ import mysql.connector as mariadb
 import time
 import sys
 import signal
-from TSL2561 import TSL2561
+#from TSL2561 import TSL2561
 
 def main():
     
     def loop():
         for aS in analogSensors:
-            data = collectData(aS)
-#             data = board.analog_read(analogSensors[aS])
+            if (aS.getType() == "DTH22"):
+                pass
+            else:
+                data = board.analog_read(analogSensors[aS])
             print(str(aS) + ": " + str(data))
-            writeToDatabase(str(aS), data)
+            #writeToDatabase(str(aS), data)
+            
+        for dS in digitalSensors:
+            data = board.digital_read(digitalSensors[dS])
+            print(str(dS) + ": " + str(data))
+            writeToDatabase(str(dS), data)
         
         time.sleep(1)
     
@@ -38,23 +45,6 @@ def main():
         if mariadb_connection is not None:
             mariadb_connection.close()
         sys.exit(0)
-        
-    def collectData(sensor):
-        data = board.analog_read(analogSensors[sensor])
-        
-        if sensor == "sound_sensor_grove":
-            return(data) 
-                
-        if sensor == "temp_sensor_grove":
-            return(data) 
-                
-        if sensor == "light_sensor_grove":
-            return(data) 
-                
-        if sensor == "movement_sensor_grove":
-            return(data) 
-        
-
 
         
     #### main ####
@@ -62,9 +52,7 @@ def main():
     
     
     sensors = []  
-#     with open("config_3d.json") as json_file:
     with open("config_room.json") as json_file:
-
         try:
             sensors = json.load(json_file)
             
@@ -74,13 +62,10 @@ def main():
     
     #### Arduino and i2c setup ####
     # for Fiona's computer
-    #arduinoAddress = "/dev/tty.usbmodemfa141"
-
-    # for Dorien's computer
-    arduinoAddress = "/dev/tty.usbmodem1421"
-
+    arduinoAddress = "/dev/tty.usbmodemfa141"
+    
     # for RaspPis. Make sure that the upper left USB socket is used
-#     arduinoAddress = "/dev/ttyACM0"
+    #arduinoAddress = "/dev/ttyACM0"
     #arduinoAddress = "/dev/ttyACM1"
     
     # board setup
@@ -96,10 +81,18 @@ def main():
         # enable reporting for the analog sensor
         board.set_pin_mode(pinNr, board.INPUT, board.ANALOG)
         
-    i2cSensors = {}
+    digitalSensors = {}  
+    for sensor in sensors["DigitalSensors"]:
+        pinNr = int(sensor["pin"])
+        digitalSensors[sensor["name"] + "_" + sensor["type"]] = pinNr
+        # enable reporting for the analog sensor
+        board.set_pin_mode(pinNr, board.INPUT, board.DIGITAL)
+        
+    #i2cSensors = {}
     for sensor in sensors["i2cSensors"]:
         if sensor["class"] is "TSL2561":
-            i2cSensors[sensor["name"] + "_" + sensor["type"]] = TSL2561(board, [])
+            pass
+            # i2cSensors[sensor["name"] + "_" + sensor["type"]] = TSL2561(board, [])
         elif sensor["class"] is "TCS2600":
             pass
         elif sensor["class"] is "MPL3115A2":
@@ -108,7 +101,10 @@ def main():
             print("Unknown i2c sensor.")
     
     # database/file
-
+    #mariadb_connection = mariadb.connect(user='room', host='192.168.0.10', password='room', database='room')
+    #mariadb_connection = mariadb.connect(user='cnc', host='192.168.0.10', password='cnc', database='cnc')
+    #mariadb_connection = mariadb.connect(user='laser', host='192.168.0.10', password='laser', database='laser')
+    mariadb_connection = mariadb.connect(user='test', password='test', database='test', host='192.168.0.10')
     #mariadb_connection = mariadb.connect(user='test', password='test', database='test', host='localhost')
     cursor = mariadb_connection.cursor()
         
