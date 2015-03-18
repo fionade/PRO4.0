@@ -1,0 +1,63 @@
+{ 
+ 	"i2cSensors": [ 
+
+ 	], 
+ 	 
+ 	"AnalogSensors": [ 
+		{ 
+ 			"name": "room_gasMQ2", 
+ 			"type": "analog", 
+ 			"pin": "0" 
+ 		},
+    		{ 
+ 			"name": "room_temp", 
+ 			"type": "analog", 
+ 			"pin": "1" 
+ 		},
+ 		{ 
+ 			"name": "room_sound", 
+ 			"type": "analog", 
+ 			"pin": "2" 
+ 		},
+		{ 
+ 			"name": "room_airQuality", 
+ 			"type": "analog", 
+ 			"pin": "3" 
+ 		},
+		{ 
+ 			"name": "room_windowRight", 
+ 			"type": "analog", 
+ 			"pin": "4" 
+ 		},
+		{ 
+ 			"name": "room_windowLeft", 
+ 			"type": "analog", 
+ 			"pin": "5" 
+ 		},
+		{ 
+ 			"name": "room_door", 
+ 			"type": "analog", 
+ 			"pin": "7" 
+ 		}
+
+
+        
+	
+ 	],
+ 	
+ 	"DigitalSensors": [
+ 		{ 
+ 			"name": "room_light", 
+ 			"type": "digital", 
+ 			"pin": "2" 
+ 		},
+
+    		{ 
+ 			"name": "room_movement", 
+ 			"type": "digital", 
+ 			"pin": "6" 
+ 		}
+
+
+ 	]
+} 
