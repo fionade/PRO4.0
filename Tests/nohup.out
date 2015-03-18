@@ -1,0 +1,547 @@
+
+Python Version 2.7.3 (default, Mar 18 2014, 05:13:23) 
+[GCC 4.6.3]
+
+PyMata version 2.05   Copyright(C) 2013-15 Alan Yorinks    All rights reserved.
+
+Opening Arduino Serial port /dev/ttyACM1 
+
+Please wait while Arduino is being detected. This can take up to 30 seconds ...
+Board initialized in 0 seconds
+Total Number of Pins Detected = 70
+Total Number of Analog Pins Detected = 16
+Unknown i2c sensor.
+Unknown i2c sensor.
+Unknown i2c sensor.
+Unknown i2c sensor.
+Unknown i2c sensor.
+Traceback (most recent call last):
+  File "/home/pi/DataCollection/Main.py", line 104, in <module>
+    main()
+  File "/home/pi/DataCollection/Main.py", line 89, in main
+    mariadb_connection = mariadb.connect(user='3d', host='192.168.0.10', password='3d', database='3d')
+  File "/usr/lib/python2.7/dist-packages/mysql/connector/__init__.py", line 162, in connect
+    return MySQLConnection(*args, **kwargs)
+  File "/usr/lib/python2.7/dist-packages/mysql/connector/connection.py", line 129, in __init__
+    self.connect(**kwargs)
+  File "/usr/lib/python2.7/dist-packages/mysql/connector/connection.py", line 454, in connect
+    self._open_connection()
+  File "/usr/lib/python2.7/dist-packages/mysql/connector/connection.py", line 421, in _open_connection
+    self._ssl)
+  File "/usr/lib/python2.7/dist-packages/mysql/connector/connection.py", line 204, in _do_auth
+    self._auth_switch_request(username, password)
+  File "/usr/lib/python2.7/dist-packages/mysql/connector/connection.py", line 240, in _auth_switch_request
+    raise errors.get_exception(packet)
+mysql.connector.errors.ProgrammingError: 1045 (28000): Access denied for user '3d'@'192.168.0.2' (using password: YES)
+Exception in thread Thread-2 (most likely raised during interpreter shutdown):Exception in thread Thread-1 (most likely raised during interpreter shutdown):
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 552, in __bootstrap_inner
+  File "/usr/local/lib/python2.7/dist-packages/PyMata/pymata_serial.py", line 123, in run
+  File "/usr/lib/python2.7/dist-packages/serial/serialposix.py", line 449, in read
+<type 'exceptions.AttributeError'>: 'NoneType' object has no attribute 'read'
+
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/threading.py", line 552, in __bootstrap_inner
+  File "/usr/local/lib/python2.7/dist-packages/PyMata/pymata_command_handler.py", line 824, in run
+<type 'exceptions.TypeError'>: 'NoneType' object is not callable
+
+Python Version 2.7.3 (default, Mar 18 2014, 05:13:23) 
+[GCC 4.6.3]
+
+PyMata version 2.05   Copyright(C) 2013-15 Alan Yorinks    All rights reserved.
+
+Opening Arduino Serial port /dev/ttyACM1 
+
+Please wait while Arduino is being detected. This can take up to 30 seconds ...
+Board initialized in 0 seconds
+Total Number of Pins Detected = 70
+Total Number of Analog Pins Detected = 16
+Unknown i2c sensor.
+Unknown i2c sensor.
+Unknown i2c sensor.
+Unknown i2c sensor.
+Unknown i2c sensor.
+Acc_Bet1_accelerometer: 336
+weight_weight: 1023
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 968
+Mic_Mic: 1023
+Height_of_bet_height: 409
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 302
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 416
+Vibration_vib: 968
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 350
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 977
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 278
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 977
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 947
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 977
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 507
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 978
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 922
+Acc_Bet2_accelerometer: 335
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 978
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 304
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 978
+Mic_Mic: 1020
+Height_of_bet_height: 404
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1023
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 978
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 259
+Acc_Bet2_accelerometer: 335
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 978
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 807
+Acc_Bet2_accelerometer: 337
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 982
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 265
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 982
+Mic_Mic: 1023
+Height_of_bet_height: 404
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 857
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 982
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 985
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 982
+Mic_Mic: 1023
+Height_of_bet_height: 408
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 383
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 983
+Mic_Mic: 1020
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 868
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 983
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 349
+Acc_Bet2_accelerometer: 335
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 983
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 865
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 983
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 309
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 983
+Mic_Mic: 1020
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 429
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 986
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1020
+Acc_Bet1_accelerometer: 336
+weight_weight: 283
+Acc_Bet2_accelerometer: 335
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 986
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 578
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 416
+Vibration_vib: 986
+Mic_Mic: 1023
+Height_of_bet_height: 407
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 505
+Acc_Bet2_accelerometer: 338
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 986
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 339
+weight_weight: 372
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 986
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 982
+Acc_Bet2_accelerometer: 335
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 987
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 440
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 986
+Mic_Mic: 1023
+Height_of_bet_height: 407
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1006
+Acc_Bet2_accelerometer: 335
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 987
+Mic_Mic: 1019
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1023
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 985
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 377
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 989
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1020
+Acc_Bet1_accelerometer: 336
+weight_weight: 248
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 989
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 810
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 989
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1020
+Acc_Bet1_accelerometer: 336
+weight_weight: 382
+Acc_Bet2_accelerometer: 335
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 989
+Mic_Mic: 1023
+Height_of_bet_height: 408
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 339
+weight_weight: 854
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 990
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 358
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 989
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1020
+Acc_Bet1_accelerometer: 336
+weight_weight: 900
+Acc_Bet2_accelerometer: 338
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 990
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 340
+weight_weight: 305
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 990
+Mic_Mic: 1023
+Height_of_bet_height: 408
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 741
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 991
+Mic_Mic: 1020
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 971
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 990
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1023
+Acc_Bet2_accelerometer: 338
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 987
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 415
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 991
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1009
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 416
+Vibration_vib: 992
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 340
+weight_weight: 455
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 988
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1023
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 992
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 397
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 992
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1006
+Acc_Bet2_accelerometer: 337
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 993
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 945
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 990
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1023
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 993
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 441
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 993
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1019
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 993
+Mic_Mic: 1023
+Height_of_bet_height: 407
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 416
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 994
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1019
+Acc_Bet2_accelerometer: 335
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 993
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 427
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 993
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 1023
+Acc_Bet2_accelerometer: 335
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 995
+Mic_Mic: 1020
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1020
+Acc_Bet1_accelerometer: 336
+weight_weight: 537
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 416
+Vibration_vib: 995
+Mic_Mic: 1021
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1020
+Acc_Bet1_accelerometer: 336
+weight_weight: 1023
+Acc_Bet2_accelerometer: 337
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 992
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 455
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 995
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 977
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 412
+Vibration_vib: 995
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 885
+Acc_Bet2_accelerometer: 335
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 995
+Mic_Mic: 1023
+Height_of_bet_height: 406
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 696
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 995
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1023
+Acc_Bet1_accelerometer: 336
+weight_weight: 514
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerometer: 413
+Vibration_vib: 996
+Mic_Mic: 1023
+Height_of_bet_height: 405
+Temp_and_Humidity_temp_hum: 1020
+Acc_Bet1_accelerometer: 336
+weight_weight: 988
+Acc_Bet2_accelerometer: 334
+Acc_Bet3_accelerome

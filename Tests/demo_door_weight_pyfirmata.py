@@ -5,24 +5,24 @@
 
 from pyfirmata import Arduino, util
 import time
-import Adafruit_CharLCD as LCD
+#import Adafruit_CharLCD as LCD
 
 if __name__ == '__main__':
     
     # Initialize the LCD using the pins
-    lcd = LCD.Adafruit_CharLCDPlate()
+    #lcd = LCD.Adafruit_CharLCDPlate()
     
     # Show intro
-    lcd.set_color(0.0, 0.0, 1.0)
-    lcd.clear()
-    lcd.message('PIP: Team Pro4.0\nDoor&Floormat')
+    #lcd.set_color(0.0, 0.0, 1.0)
+    #lcd.clear()
+    #lcd.message('PIP: Team Pro4.0\nDoor&Floormat')
     time.sleep(2.0)
     
     # config
     arduinoAddress = "/dev/tty.usbmodemfa141"
     
     # Seems necessary when using analog boards. See pyfirmata readme on github
-    board = Arduino('/dev/ttyACM0')
+    board = Arduino(arduinoAddress)
     it = util.Iterator(board)
     it.start()
     
@@ -38,8 +38,8 @@ if __name__ == '__main__':
     time.sleep(1)
 
     while True:
-        out = "Door " + str(pin[0].read()) + "\n"
-        out += "Weight " + str(pin[1].read())
-        lcd.clear()
-        lcd.message(out)
+        out = "Door " + str(pin[0].read())
+        print(out)
+        #lcd.clear()
+        #lcd.message(out)
         time.sleep(1)
